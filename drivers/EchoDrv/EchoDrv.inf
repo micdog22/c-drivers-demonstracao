@@ -1,0 +1,35 @@
+
+; EchoDrv.inf
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider=%ManufacturerName%
+CatalogFile=EchoDrv.cat
+DriverVer=09/20/2025,1.0.0.0
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64
+
+[Standard.NTamd64]
+%EchoDrv.DeviceDesc% = EchoDrv_Install, Root\EchoDrv
+
+[EchoDrv_Install]
+CopyFiles = EchoDrv_Files
+
+[EchoDrv_Install.Services]
+AddService = EchoDrv,0x00000002,EchoDrv_Service_Inst
+
+[EchoDrv_Files]
+EchoDrv.sys
+
+[EchoDrv_Service_Inst]
+ServiceType = 1
+StartType   = 3
+ErrorControl= 1
+LoadOrderGroup = Base
+ServiceBinary = %12%\EchoDrv.sys
+
+[Strings]
+ManufacturerName = "C Drivers Pack"
+EchoDrv.DeviceDesc = "Echo KMDF Sample Driver"

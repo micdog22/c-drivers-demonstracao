@@ -1,0 +1,16 @@
+
+#pragma once
+#include "Public.h"
+
+typedef struct _DEVICE_CONTEXT {
+    ULONG Seed;
+} DEVICE_CONTEXT, *PDEVICE_CONTEXT;
+
+WDF_DECLARE_CONTEXT_TYPE_WITH_NAME(DEVICE_CONTEXT, GetDeviceContext)
+
+EVT_WDF_DEVICE_CONTEXT_CLEANUP RandomDrv_EvtDeviceCleanup;
+EVT_WDF_IO_QUEUE_IO_DEVICE_CONTROL RandomDrv_EvtIoDeviceControl;
+EVT_WDF_IO_QUEUE_IO_READ RandomDrv_EvtIoRead;
+EVT_WDF_IO_QUEUE_IO_WRITE RandomDrv_EvtIoWrite;
+
+EVT_WDF_DRIVER_DEVICE_ADD RandomDrv_EvtDeviceAdd;

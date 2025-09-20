@@ -1,0 +1,35 @@
+
+; RandomDrv.inf
+[Version]
+Signature="$WINDOWS NT$"
+Class=System
+ClassGuid={4d36e97d-e325-11ce-bfc1-08002be10318}
+Provider=%ManufacturerName%
+CatalogFile=RandomDrv.cat
+DriverVer=09/20/2025,1.0.0.0
+
+[Manufacturer]
+%ManufacturerName% = Standard,NTamd64
+
+[Standard.NTamd64]
+%RandomDrv.DeviceDesc% = RandomDrv_Install, Root\RandomDrv
+
+[RandomDrv_Install]
+CopyFiles = RandomDrv_Files
+
+[RandomDrv_Install.Services]
+AddService = RandomDrv,0x00000002,RandomDrv_Service_Inst
+
+[RandomDrv_Files]
+RandomDrv.sys
+
+[RandomDrv_Service_Inst]
+ServiceType = 1
+StartType   = 3
+ErrorControl= 1
+LoadOrderGroup = Base
+ServiceBinary = %12%\RandomDrv.sys
+
+[Strings]
+ManufacturerName = "C Drivers Pack"
+RandomDrv.DeviceDesc = "Random KMDF Sample Driver"
